@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Site Has Been On For How Long</title>
+
+</head>
+<body>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #time{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 4vw;
+        }
+    </style>
+    <h1>This Site Has Been On For How Long</h1>
+    <div>This site has been on for </div>
+    <div id="time">...</div>
+    <script>
+        const eventSource = new EventSource('/counting');
+        const time = document.getElementById('time');
+        const body = document.querySelector('div')
+        eventSource.onmessage = (event) => {
+            time.textContent = event.data;
+            
+        }
+    </script>
+</body>
+</html>
